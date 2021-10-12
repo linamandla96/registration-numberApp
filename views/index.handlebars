@@ -18,42 +18,55 @@
         <div class="reg">
             <h1>REGISTRATION</h1>
             <span class="errorMessa"></span>
+            <form action="/regNum" method="post">
+                <label for="">Registration Number</label>
 
-            <label for="">Registration Number</label>
-            <input type="text" name="" class="regi" value="" placeholder="CA 14523"><br>
-            <br>
-            <button type="button" class="addbtn">ADD</button><br>
+                <input type="text" name="regNames" class="regNames" value="{{regNames}}" placeholder="CA 14523"><br>
+                <br>
+                <button type="submit" class="addbtn">ADD</button><br>
 
-            <br>
-
-            <div class="radio">
-                <label class="malmesbury"></label>
-                <input type="radio" name="reg" class="regPlace" value="CK">
-                <span class="label-body">Malmesbury</span>
-
-                <label class="Belville"></label>
-                <input type="radio" name="reg" class="regPlace" value="CY">
-                <span class="label-body">Belville</span>
-
-                <label class="Capetown"></label>
-                <input type="radio" name="reg" class="regPlace" value="CA">
-                <span class="label-body">Cape Town</span>
-            </div><br>
-
-
-
-            <button type="button" class="showbtn">SHOW</button>
-            <button type="button" class="showAllbtn">SHOW ALL</button>
-            <button type="button" class="resetbtn">RESET</button><br>
+            </form>
 
             <br>
+            <form action="/regNum" method="post">
+                <div class="radio">
+                    <label class="malmesbury"></label>
+                    <input type="radio" name="reg" class="regPlace" value="CK">
+                    <span class="label-body">Malmesbury</span>
+
+                    <label class="Belville"></label>
+                    <input type="radio" name="reg" class="regPlace" value="CY">
+                    <span class="label-body">Belville</span>
+
+                    <label class="Capetown"></label>
+                    <input type="radio" name="reg" class="regPlace" value="CA">
+                    <span class="label-body">Cape Town</span>
+                </div><br>
+                <button type="button" class="showbtn">SHOW</button>
+
+            </form>
+
+
+
+
+
+            <form action="action" method="post">
+                <button type="button" class="showAllbtn">SHOW ALL</button>
+
+            </form>
+
+            <form action="action" method="post">
+                <button type="button" class="resetbtn">RESET</button><br>
+            </form>
+            <br>
             <br>
 
-            <span class="display"></span>
+            <span class="display">{{display}}</span>
         </div><br>
         <br>
     </div>
-    {{!-- //<script src="registrationFactoryFun.js" charset="utf-8"></script>
+    {{!-- //
+    <script src="registrationFactoryFun.js" charset="utf-8"></script>
 
     <script src="registration.js" charset="utf-8"></script> --}}
 </body>
