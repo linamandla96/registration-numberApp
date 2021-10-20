@@ -28,18 +28,50 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(flash())
 
-const  regNumApp = registration()
-app.get('/', function (req, res) {
+
+const pg = require("pg");
+const Pool = pg.Pool;
+
+
+let useSSL = false;
+let local = process.env.LOCAL || false;
+if (process.env.DATABASE_URL && !local) {
+    useSSL = true;
+}
+
+
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL || 'postgresql://codex:pg123@localhost:5432/registrationNumbers',
+    ssl: {
+        useSSL,
+        rejectUnauthorized: false
+    }
+});
+
+
+
+const regNumApp = registration(pool)
+
+app.get('/', async function (req, res) {
     res.render('index', {
-        display: regNumApp.registeredNum()
+        display: await regNumApp.registeredNum()
+        
+
 
     });
 });
-app.post('/regNum', function (req, res) {
-    regNumApp.storeRegNum(req.body.regNames);
+app.post('/regNum',async  function (req, res) {
+  await regNumApp.storeRegNum(req.body.regNames);
     res.redirect('/')
 });
 
+app.post('/showtown',async  function (req, res) {
+   let bee =  await regNumApp.showTowns(req.body.reg);
+    res.render('index',{
+        display : bee
+    })
+  });
+  
 
 
 

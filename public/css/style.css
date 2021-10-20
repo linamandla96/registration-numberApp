@@ -1,7 +1,7 @@
 .reg{
     background-color:cornflowerblue; 
     width: 30%; 
-   padding-bottom: 2%;
+   padding-bottom: 3%;
     margin-left: 35%;
     margin-top: 10%;
     border: 5px black solid;
@@ -14,7 +14,16 @@
   }
   .display span {
     background-color: yellow;
-    border-radius: 35%;
-    border: 4px black solid;
-    width: 25%;
+    border-radius: 20%;
+    border: 3px black solid;
+    width: 80%;
   }
+  .showall{
+ padding-left: 20%;
+ margin-top:  -5.5%;
+ 
+}
+.reset{
+  padding-left: 50%;
+  margin-top: -5.5%;
+}
