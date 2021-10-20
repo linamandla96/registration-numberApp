@@ -28,8 +28,15 @@ module.exports = function registration(pool) {
 
 
     async function selectId(reg) {
+        try{
         let regId = await pool.query('SELECT id from regTowns where regCity = $1', [reg])
         return regId.rows[0].id;
+        }
+        catch (err) {
+            console.log("error caught this", err)
+            throw err;
+        }
+
     }
 
     async function registeredNum() {
