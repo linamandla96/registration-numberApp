@@ -61,8 +61,14 @@ app.get('/', async function (req, res) {
     });
 });
 app.post('/regNum',async  function (req, res) {
-  await regNumApp.storeRegNum(req.body.regNames);
+    try{
+        await regNumApp.storeRegNum(req.body.regNames);
     res.redirect('/')
+    }
+ catch (err) {
+    console.log("error caught this", err)
+    throw err;
+}
 });
 
 app.post('/showtown',async  function (req, res) {
