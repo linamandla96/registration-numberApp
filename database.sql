@@ -10,6 +10,6 @@ create table regNumbers (
     reg int,
     foreign key(reg) references regTowns(id)		
 );
-INSERT INTO regTowns(towns,regCity) VALUE('Belville','CY'),
-INSERT INTO regTowns(towns,regCity) VALUE('CapeTown','CA'),
-INSERT INTO regTowns(towns,regCity) VALUE('Malmesbury','CK')
+INSERT INTO regTowns(towns,regCity) VALUES('Belville','CY');
+INSERT INTO regTowns(towns,regCity) VALUES('CapeTown','CA');
+INSERT INTO regTowns(towns,regCity) VALUES('Malmesbury','CK');
