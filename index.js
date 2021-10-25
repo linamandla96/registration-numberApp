@@ -55,34 +55,67 @@ const regNumApp = registration(pool)
 app.get('/', async function (req, res) {
     res.render('index', {
         display: await regNumApp.registeredNum()
-        
+
 
 
     });
 });
-app.post('/regNum',async  function (req, res) {
-    try{
+app.post('/regNum', async function (req, res) {
+    var regex = /^[a-zA-Z]{2} [0-9]{3}(-[0-9]{3})$|[a-zA-Z]{2} [0-9]{3}([0-9]{3})$|[a-zA-Z]{2} ([0-9]{3} [0-9]{3})$|[a-zA-Z]{2} ([0-9]{4})$/i;
+
+    //let theTowns = req.body.reg;
+    let theRegNum = req.body.regNames;
+    if (theRegNum) {
         await regNumApp.storeRegNum(req.body.regNames);
-    res.redirect('/')
     }
- catch (err) {
-    console.log("error caught this", err)
-    throw err;
-}
+     if (!theRegNum) {
+
+        req.flash('error', 'Plase enter registration numbers')
+    }
+    else if (theRegNum && !regex.test(theRegNum)) {
+        req.flash('error', 'Plase enter avalid registration numbers')
+    }
+     if (theRegNum && regex.test(theRegNum)) {
+        req.flash('erro', 'Registration numbers is sucessfully added')
+
+    }
+
+
+    res.redirect('/')
 });
 
-app.post('/showtown',async  function (req, res) {
-   let bee =  await regNumApp.showTowns(req.body.reg);
-    res.render('index',{
-        display : bee
+app.post('/showtown', async function (req, res) {
+
+    let theTowns = req.body.reg;
+
+    if (theTowns) {
+        await regNumApp.showTowns(req.body.reg);
+    }
+    else if (!theTowns) {
+        req.flash('error', 'Plase enter  town registration numbers')
+    }
+
+
+    res.render('index', {
+        display: await regNumApp.showTowns(req.body.reg)
     })
-  });
-  
+});
+
+app.post('/reset', async function reset(req, res) {
+    await regNumApp.resetBtn()
+
+    res.redirect('/')
+});
+app.post('/showall', async function (req, res) {
+    await regNumApp.showallbtn()
+
+    res.redirect('/')
+});
 
 
 
 
-let PORT = process.env.PORT || 3018;
+let PORT = process.env.PORT || 3035;
 
 app.listen(PORT, function () {
     console.log('App started on port:', PORT);

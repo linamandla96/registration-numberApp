@@ -12,15 +12,15 @@ module.exports = function registration(pool) {
                 var regi = await pool.query('select regnumbers from regNumbers WHERE regnumbers = $1', [regNum])
                 var regString = regNum.substring(0, 2);
 
+
+
+                if (regi.rowCount < 1) {
+                    var regT = await selectId(regString);
+                    await pool.query('insert into regNumbers (regnumbers,reg) values($1,$2)', [regNum, regT])
+
+
+                }
             }
-
-            if (regi.rowCount < 1) {
-                var regT = await selectId(regString);
-                await pool.query('insert into regNumbers (regnumbers,reg) values($1,$2)', [regNum, regT])
-
-
-            }
-
         }
     }
 
@@ -28,9 +28,9 @@ module.exports = function registration(pool) {
 
 
     async function selectId(reg) {
-        try{
-        let regId = await pool.query('SELECT id from regTowns where regCity = $1', [reg])
-        return regId.rows[0].id;
+        try {
+            let regId = await pool.query('SELECT id from regTowns where regCity = $1', [reg])
+            return regId.rows[0].id;
         }
         catch (err) {
             console.log("error caught this", err)
@@ -64,9 +64,18 @@ module.exports = function registration(pool) {
 
     }
     async function showbtn(regShow) {
-        var regString = regShow.substring(0, 2);
-        var regTownsShow = await pool.query('SELECT id from regTowns where regCity = $1', [regString])
-        return regTownsShow.rows[0].id;
+        if (regShow) {
+            var regString = regShow.substring(0, 2);
+            var regTownsShow = await pool.query('SELECT id from regTowns where regCity = $1', [regString])
+            return regTownsShow.rows[0].id;
+        }
+
+
+    }
+
+    async function showallbtn() {
+        var showallReg = await pool.query('SELECT regnumbers from regNumbers')
+        return showallReg.rows;
 
 
     }
@@ -80,6 +89,7 @@ module.exports = function registration(pool) {
         resetBtn,
         selectId,
         showbtn,
+        showallbtn
 
     }
 }

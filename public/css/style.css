@@ -27,3 +27,25 @@
   padding-left: 50%;
   margin-top: -5.5%;
 }
+@keyframes erroMesseges{
+  to{
+      width: 0;
+      height: 0;
+      overflow: hidden;
+  }
+}
+.errorMessa {
+  color:red;
+  animation: erroMesseges 0s ease-in 3s forwards;
+}
+@keyframes erroM{
+  to{
+      width: 0;
+      height: 0;
+      overflow: hidden;
+  }
+}
+.erro {
+  color:darkgreen;
+  animation: erroM 0s ease-in 3s forwards;
+}

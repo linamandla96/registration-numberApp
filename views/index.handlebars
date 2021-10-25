@@ -17,7 +17,22 @@
     <div class="row1">
         <div class="reg">
             <h1>REGISTRATION</h1>
+            
+            <label class="">
+                {{#if messages.error}}
+                <div class="errorMessa">{{messages.error}}</div>
+                 {{/if}}
+            </label>
+            <label class="">
+                {{#if messages.erro}}
+                <div class="erro">{{messages.erro}}</div>
+                 {{/if}}
+            </label>
             <span class="errorMessa"></span>
+            
+            
+            
+            
             <form action="/regNum" method="post">
                 <label for="">Registration Number</label>
 
@@ -45,34 +60,34 @@
                 <div class="show">
                     <button type="submit" class="showbtn">SHOW</button>
                 </div>
-                
+
 
             </form>
 
 
 
 
-              <div class="showall">
-                <form action="action" method="post">
-                <button type="button" class="showAllbtn">SHOW ALL</button>
+            <div class="showall">
+                <form action="/showall" method="post">
+                    <button type="submit" class="showAllbtn">SHOW ALL</button>
 
-            </form>
-  
-              </div>
-            <div class="reset">
-           <form action="/reset" method="post">
-                <button type="submit" class="resetbtn">RESET</button><br>
-            </form>
+                </form>
 
             </div>
-           
+            <div class="reset">
+                <form action="/reset" method="post">
+                    <button type="submit" class="resetbtn">RESET</button><br>
+                </form>
+
+            </div>
+
             <br>
             <br>
-        <div class="display">
-            {{#each display}}
-            <span class="display">{{this.regnumbers}}</span>
-            {{/each}}
-        </div>
+            <div class="display">
+                {{#each display}}
+                <span class="display">{{this.regnumbers}}</span>
+                {{/each}}
+            </div>
         </div><br>
 
         <br>
